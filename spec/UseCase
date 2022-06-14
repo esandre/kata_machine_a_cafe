@@ -1,0 +1,62 @@
+La machine ne sert que des expresso non-sucrés dans un gobelet jetable.
+Ils coûtent 40 cts.
+La machine accepte uniquement les pièces et ne rend pas la monnaie.
+
+
+N’oubliez pas de gérer les pénuries.
+
+
+----------------
+
+FEATURE Servir un café gratuit
+    BACKGROUND
+        ETANT DONNE une machine a cafe
+
+    QUAND on appuie sur le bouton "Servir"
+    ALORS on obtient un expresso
+
+    ETANT DONNE qu'il n'y a plus de gobelet
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche le message "Plus de gobelets"
+    ET il n'y a pas d'expresso servi
+
+    ETANT DONNE qu'il n'y a plus de café
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche le message "Plus de café"
+    ET il n'y a pas d'expresso servi
+
+    ETANT DONNE qu'il n'y a plus de café ni de gobelet
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche le message "Plus de café ni de gobelet"
+    ET il n'y a pas d'expresso servi
+
+------------------
+
+FEATURE Servir un café gratuit
+
+    ETANT DONNE une machine à café
+    ET du café
+    ET un gobelet
+    QUAND on appuie sur le bouton "Servir"
+    ALORS on obtient un expresso
+
+    ETANT DONNE une machine à café
+    ET pas de café
+    ET un gobelet
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche "Plus de café"
+    ET il n'y a pas d'expresso servi
+
+    ETANT DONNE une machine à café
+    ET du café
+    ET pas de gobelet
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche "Plus de gobelet"
+    ET il n'y a pas d'expresso servi
+
+    ETANT DONNE une machine à café
+    ET pas de café
+    ET pas de gobelet
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche "Plus de café ni de gobelet"
+    ET il n'y a pas d'expresso servi
