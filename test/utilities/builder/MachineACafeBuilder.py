@@ -6,6 +6,7 @@ class MachineACafeBuilder:
     def __init__(self):
         self.__nombre_gobelets = 1
         self.__quantite_de_cafe = QuantiteCafe(2)
+        self.__quantite_dargent = 40
 
     def ayant_un_nombre_de_gobelets_defini(self, nombre_gobelets: int):
         self.__nombre_gobelets = nombre_gobelets
@@ -15,8 +16,12 @@ class MachineACafeBuilder:
         self.__quantite_de_cafe = quantite_de_cafe
         return self
 
+    def ayant_une_quantité_dargent_definie(self, quantite_dargent: int):
+        self.__quantite_dargent = quantite_dargent
+        return self
+
     def build(self) -> MachineACafe:
-        return MachineACafe(self.__nombre_gobelets, self.__quantite_de_cafe)
+        return MachineACafe(self.__nombre_gobelets, self.__quantite_de_cafe, self.__quantite_dargent)
 
 
 

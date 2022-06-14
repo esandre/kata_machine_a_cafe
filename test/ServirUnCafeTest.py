@@ -1,9 +1,8 @@
 import unittest
 
-from MachineACafe import PlusAssezDeCafeException
+from PlusAssezDeCafeException import PlusAssezDeCafeException
 from QuantiteCafe import QuantiteCafe
 from utilities.builder.MachineACafeBuilder import MachineACafeBuilder
-from utilities.FixedValueRandomNumberGenerator import FixedValueRandomNumberGenerator
 
 '''
     QUAND on appuie sur le bouton "Servir"
@@ -20,6 +19,11 @@ from utilities.FixedValueRandomNumberGenerator import FixedValueRandomNumberGene
     ETANT DONNE qu'il n'y a plus de café ni de gobelet
     QUAND on appuie sur le bouton "Servir"
     ALORS la machine affiche le message "Plus de café ni de gobelet"
+    
+    ETANT DONNE qu'il y a <x> cts sur la machine
+    ET que <x> est supérieur ou égal à 40
+    QUAND on appuie sur le bouton "Servir"
+    ALORS la machine affiche le message "Pas assez d'argent"
 '''
 
 
@@ -43,9 +47,14 @@ class ServirUnCafeTest(unittest.TestCase):
             .ayant_une_quantité_de_cafe_definie(QuantiteCafe(0)) \
             .build()
 
-        with self.assertRaises(Exception):
+        with self.assertRaises(PlusAssezDeCafeException):
             machine.appuyer_sur_le_bouton_servir()
 
+    def test_pas_assez_dargent(self):
+        machine = MachineACafeBuilder().ayant_une_quantité_dargent_definie(35).build()
+
+        with self.assertRaises(Exception):
+            machine.appuyer_sur_le_bouton_servir()
 
 if __name__ == '__main__':
     unittest.main()

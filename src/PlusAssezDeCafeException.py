@@ -1,0 +1,2 @@
+class PlusAssezDeCafeException(Exception):
+    pass
