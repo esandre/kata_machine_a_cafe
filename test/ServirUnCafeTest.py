@@ -1,7 +1,6 @@
 import unittest
 
-from src.LanguageRandomNumberGenerator import LanguageRandomNumberGenerator
-from src.MachineACafe import MachineACafe
+from MachineACafe import PlusAssezDeCafeException
 from utilities.builder.MachineACafeBuilder import MachineACafeBuilder
 from utilities.FixedValueRandomNumberGenerator import FixedValueRandomNumberGenerator
 
@@ -22,6 +21,7 @@ from utilities.FixedValueRandomNumberGenerator import FixedValueRandomNumberGene
     ALORS la machine affiche le message "Plus de café ni de gobelet"
 '''
 
+
 class ServirUnCafeTest(unittest.TestCase):
     def test_servir_expresso(self):
         machine = MachineACafeBuilder().build()
@@ -32,6 +32,14 @@ class ServirUnCafeTest(unittest.TestCase):
     def test_plus_de_gobelet(self):
         machine = MachineACafeBuilder()\
             .ayant_un_nombre_de_gobelets_defini(0)\
+            .build()
+
+        with self.assertRaises(Exception):
+            machine.appuyer_sur_le_bouton_servir()
+
+    def test_plus_assez_de_cafe(self):
+        machine = MachineACafeBuilder() \
+            .ayant_une_quantité_de_cafe_definie(0) \
             .build()
 
         with self.assertRaises(Exception):
