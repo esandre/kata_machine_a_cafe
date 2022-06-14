@@ -1,6 +1,7 @@
 import unittest
 
 from MachineACafe import PlusAssezDeCafeException
+from QuantiteCafe import QuantiteCafe
 from utilities.builder.MachineACafeBuilder import MachineACafeBuilder
 from utilities.FixedValueRandomNumberGenerator import FixedValueRandomNumberGenerator
 
@@ -39,16 +40,7 @@ class ServirUnCafeTest(unittest.TestCase):
 
     def test_plus_assez_de_cafe(self):
         machine = MachineACafeBuilder() \
-            .ayant_une_quantité_de_cafe_definie(0) \
-            .build()
-
-        with self.assertRaises(Exception):
-            machine.appuyer_sur_le_bouton_servir()
-
-    def test_pas_de_chance(self):
-        rng = FixedValueRandomNumberGenerator(0)
-        machine = MachineACafeBuilder()\
-            .ayant_un_rng_defini(rng)\
+            .ayant_une_quantité_de_cafe_definie(QuantiteCafe(0)) \
             .build()
 
         with self.assertRaises(Exception):
